@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burritos Damn | El auténtico sabor norteño</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ea580c; /* Tailwind orange-600 */
+            color: #ffffff;
+        }
+        
+        /* Animación suave para el botón de oferta */
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite ease-in-out;
+        }
+
+        /* Modal oculto por defecto */
+        .modal-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- Navbar -->
+    <header class="w-full py-6 px-4 sm:px-8 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="text-3xl sm:text-4xl font-black tracking-tighter uppercase">
+            Burritos <span class="text-yellow-300">Damn</span>
+        </div>
+        <nav class="hidden sm:block">
+            <ul class="flex space-x-6 font-bold text-lg">
+                <li><a href="#menu" class="hover:text-yellow-300 transition">Menú</a></li>
+                <li><a href="#contacto" class="hover:text-yellow-300 transition">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="flex-grow flex flex-col md:flex-row items-center justify-center w-full max-w-7xl mx-auto px-4 sm:px-8 py-10 gap-12">
+        
+        <!-- Text Content -->
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6">
+            <h1 class="text-5xl md:text-7xl font-black leading-tight drop-shadow-lg">
+                EL MEJOR <br> BURRITO <br> NORTEÑO.
+            </h1>
+            <p class="text-xl md:text-2xl font-light max-w-lg drop-shadow-md">
+                Tortilla de harina calientita, carne jugosa y el queso perfectamente derretido. Directo de nuestra hielera naranja a tus manos.
+            </p>
+
+            <!-- Pricing Badges -->
+            <div id="menu" class="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center md:justify-start">
+                <div class="bg-white text-orange-600 px-6 py-4 rounded-2xl font-black text-2xl shadow-xl transform transition hover:scale-105 border-4 border-yellow-300 cursor-default">
+                    1 x $30 <span class="text-sm font-bold block text-gray-500">Ideal para el antojo</span>
+                </div>
+                <div class="bg-yellow-400 text-orange-900 px-6 py-4 rounded-2xl font-black text-2xl shadow-xl animate-pulse-soft border-4 border-white cursor-default">
+                    2 x $50 <span class="text-sm font-bold block text-orange-800">¡La promo Damn!</span>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <button onclick="openModal()" class="mt-8 bg-white text-orange-600 font-black text-2xl py-4 px-10 rounded-full shadow-2xl hover:bg-yellow-300 hover:text-orange-900 transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto">
+                ¡PIDE LOS TUYOS AHORA! 🌯
+            </button>
+        </div>
+
+        <!-- Image Content -->
+        <div class="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+            <div class="relative">
+                <!-- Decorative background blob -->
+                <div class="absolute inset-0 bg-yellow-400 rounded-full blur-3xl opacity-30 transform scale-110"></div>
+                <!-- Image of a burrito -->
+                <img 
+                    src="https://images.unsplash.com/photo-1585238341210-b409566c2d46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                    alt="" 
+                    onerror="this.src='https://placehold.co/600x600/ffffff/ea580c?text=Burritos+en+Aluminio'"
+                    class="relative z-10 w-full max-w-md rounded-3xl shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 transition duration-500 object-cover aspect-square"
+                >
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="w-full py-8 text-center text-white/80 mt-auto">
+        <p class="font-bold text-lg mb-2">Encuéntranos por la hielera naranja.</p>
+        <p class="text-sm">© 2026 Burritos Damn. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Order Modal (Simulated WhatsApp redirection) -->
+    <div id="orderModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 transition-opacity duration-300 modal-hidden backdrop-blur-sm p-4">
+        <div class="bg-white text-orange-600 p-8 rounded-3xl max-w-md w-full text-center shadow-2xl transform transition-transform duration-300 scale-95" id="modalContent">
+            <h2 class="text-3xl font-black mb-4">¡Excelente elección!</h2>
+            <p class="text-gray-600 text-lg mb-6 font-semibold">¿Cuántos vas a querer hoy?</p>
+            
+            <div class="space-y-4">
+                <a href="#" onclick="closeModal(); showSuccessMessage('1 Burrito'); return false;" class="block w-full bg-orange-100 hover:bg-orange-200 text-orange-700 font-bold py-3 rounded-xl transition border-2 border-orange-200">
+                    Quiero 1 x $30
+                </a>
+                <a href="#" onclick="closeModal(); showSuccessMessage('Promo 2 Burritos'); return false;" class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg">
+                    Quiero la promo 2 x $50 🔥
+                </a>
+            </div>
+            
+            <button onclick="closeModal()" class="mt-6 text-gray-400 hover:text-gray-600 text-sm font-bold underline">
+                Cancelar
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full font-bold shadow-2xl transition-all duration-300 opacity-0 translate-y-10 pointer-events-none z-50 flex items-center gap-2">
+        <span>✅</span>
+        <span id="toastMessage">¡Redirigiendo a WhatsApp!</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById('orderModal');
+        const modalContent = document.getElementById('modalContent');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function openModal() {
+            modal.classList.remove('modal-hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('modal-hidden');
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        function showSuccessMessage(orderType) {
+            // In a real scenario, this would be a window.location.href = "https://wa.me/YOURNUMBER?text=Hola, quiero..."
+            toastMessage.textContent = `¡Pedido de ${orderType} listo! (Simulación de WhatsApp)`;
+            toast.classList.remove('opacity-0', 'translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-10');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
