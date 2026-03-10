@@ -1,0 +1,29 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ea580c;
+    /* Tailwind orange-600 */
+    color: #ffffff;
+}
+
+/* Animación suave para el botón de oferta */
+@keyframes pulse-soft {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-soft {
+    animation: pulse-soft 2s infinite ease-in-out;
+}
+
+/* Modal oculto por defecto */
+.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
